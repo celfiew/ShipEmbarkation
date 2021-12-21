@@ -1,0 +1,77 @@
+@startuml
+
+
+
+'___________STYLES___________
+title **PARCIAL POO César Mauricio F.**
+skinparam classAttributeIconSize 0
+skinparam backgroundColor White
+skinparam RoundCorner 10
+skinparam Shadowing true
+
+skinparam class {
+    ArrowColor Black
+    BackgroundColor White
+    HeaderBackgroundColor Gray
+    BorderColor Black
+    FontColor White
+    FontSize 14
+    AttributeFontSize 12
+}
+
+skinparam object{
+    ArrowColor Black
+    BackgroundColor White
+    BorderColor Black
+    FontColor Black
+    FontSize 14
+    AttributeFontSize 12
+}
+
+skinparam note {
+    BackgroundColor LightYellow
+    BorderColor Black
+}
+
+class Capitan {
+- nombre : String
+- apellido : String
+- matriculaDeNavegacion : String
++ Capitan(nombre : String,apellido : String, matriculaDeNavegacion: String)
+}
+
+class Yate {
+- cantidadCamarotes : int
++ Yate(Capitan,double,double,int,int,int) : Yate
++ compareTo(o: Object) : int
++ Embarcar() : void
+}
+class Velero {
+- {static} CANTIDAD_MASTILES_LIMITE : int
+- cantidadMastiles : int
++ Velero(Capitan,double,double,int,int,int)
++ esGrande() : boolean
++ Embarcar() : void
+}
+abstract class Embarcacion {
+- {static} ANIO_FABRICACION_BASE : int
+- capitan : Capitan
+- precioBase : double
+- valorAdicional : double
+- anioDeFabricacion : int
+- longitudMetrosEslora : int
++ Embarcacion(Capitan,double,double,int,int)
++ calcularMontoAlquiler() : double
++ DatosCapitan() : String
++ Embarcar() : void
+}
+
+interface Comparable{
++ compareTo(o: Object): int
+}
+
+Capitan --o Embarcacion: capitan
+Comparable <|.. Yate
+Embarcacion <|-- Yate
+Embarcacion <|-- Velero
+@enduml
